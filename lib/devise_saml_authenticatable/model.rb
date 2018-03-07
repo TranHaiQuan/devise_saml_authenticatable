@@ -50,12 +50,14 @@ module Devise
               return nil
             end
           end
-
           if resource.nil?
             if Devise.saml_create_user
+              byebug
               logger.info("Creating user(#{auth_value}).")
               resource = new
+              byebug
             else
+              byebug
               logger.info("User(#{auth_value}) not found.  Not configured to create the user.")
               return nil
             end
@@ -64,7 +66,6 @@ module Devise
           if Devise.saml_update_user || (resource.new_record? && Devise.saml_create_user)
             Devise.saml_update_resource_hook.call(resource, decorated_response, auth_value)
           end
-
           resource
         end
 
