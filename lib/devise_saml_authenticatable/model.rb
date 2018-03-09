@@ -52,12 +52,9 @@ module Devise
           end
           if resource.nil?
             if Devise.saml_create_user
-              byebug
               logger.info("Creating user(#{auth_value}).")
               resource = new
-              byebug
             else
-              byebug
               logger.info("User(#{auth_value}) not found.  Not configured to create the user.")
               return nil
             end
